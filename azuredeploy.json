@@ -11,7 +11,7 @@
 			"type": "String"
 		},
 		"servers_mysqlamg_name": {
-			"defaultValue": "mysqlghost",
+			"defaultValue": "mysqlghost7563",
 			"type": "String"
 		},
 		"frontdoors_ghostfront_name": {
@@ -27,7 +27,7 @@
 			"type": "String"
 		},
 		"storageAccounts_ghoststrorage_name": {
-			"defaultValue": "ghoststrorage",
+			"defaultValue": "ghoststrorage7563",
 			"type": "String"
 		},
 		"autoscalesettings_ASP_Ghost_NC_Autoscale_158_name": {
@@ -224,7 +224,7 @@
 		{
 			"type": "Microsoft.Cdn/profiles/endpoints",
 			"apiVersion": "2020-09-01",
-			"name": "[concat(parameters('profiles_myghostcdn_name'), '/ghostamg')]",
+			"name": "[concat(parameters('profiles_myghostcdn_name'), '/ghostamgnc')]",
 			"location": "WestEurope",
 			"dependsOn": [
 				"[resourceId('Microsoft.Cdn/profiles', parameters('profiles_myghostcdn_name'))]"
