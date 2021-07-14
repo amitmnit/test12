@@ -10,6 +10,21 @@
 			"defaultValue": "westeurope",
 			"type": "string"
 		},
+		"administratorLogin": {
+		  "type": "string",
+		  "defaultValue": "ghostnc",
+		  "minLength": 1,
+		  "metadata": {
+			"description": "Database administrator login name"
+		  }
+		},
+		"administratorLoginPassword": {
+		  "type": "securestring",
+		  "minLength": 8,
+		  "metadata": {
+			"description": "Database administrator password"
+		  }
+		},
 		"profiles_myghostcdn_name": {
 			"defaultValue": "myghostcdn",
 			"type": "String"
@@ -23,7 +38,7 @@
 			"type": "String"
 		},
 		"frontdoors_ghostfront_name": {
-			"defaultValue": "ghostfront",
+			"defaultValue": "ghostfront7563",
 			"type": "String"
 		},
 		"serverfarms_ASP_Ghost_ae25_name": {
@@ -97,6 +112,8 @@
 					"geoRedundantBackup": "Disabled",
 					"storageAutogrow": "Enabled"
 				},
+				"administratorLogin": "[parameters('administratorLogin')]",
+				"administratorLoginPassword": "[parameters('administratorLoginPassword')]",
 				"version": "5.7",
 				"sslEnforcement": "Disabled",
 				"minimalTlsVersion": "TLSEnforcementDisabled",
