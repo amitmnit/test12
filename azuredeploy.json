@@ -2301,7 +2301,7 @@
 		{
 			"type": "microsoft.insights/autoscalesettings",
 			"apiVersion": "2015-04-01",
-			"name": "[parameters('autoscalesettings_ASP_Ghost_ae25_Autoscale_158_name')]",
+			"name": "[parameters('autoscalesettings_ASP_Ghost_NC_Autoscale_158_name')]",
 			"location": "West Europe",
 			"dependsOn": [
 				"[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_ASP_Ghost_ae25_name'))]"
@@ -2362,7 +2362,7 @@
 					}
 				],
 				"enabled": true,
-				"name": "[parameters('autoscalesettings_ASP_Ghost_ae25_Autoscale_158_name')]",
+				"name": "[parameters('autoscalesettings_ASP_Ghost_NC_Autoscale_158_name')]",
 				"targetResourceUri": "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_ASP_Ghost_ae25_name'))]",
 				"notifications": []
 			}
