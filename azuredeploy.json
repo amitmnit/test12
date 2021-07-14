@@ -3026,9 +3026,9 @@
 		{
 			"type": "Microsoft.Cdn/profiles/endpoints/origins",
 			"apiVersion": "2020-09-01",
-			"name": "[concat(parameters('profiles_myghostcdn_name'), '/ghostamg/ghostblogamgnc-azurewebsites-net')]",
+			"name": "[concat(parameters('profiles_myghostcdn_name'), '/ghostamgnc/ghostblogamgnc-azurewebsites-net')]",
 			"dependsOn": [
-				"[resourceId('Microsoft.Cdn/profiles/endpoints', parameters('profiles_myghostcdn_name'), 'ghostamg')]",
+				"[resourceId('Microsoft.Cdn/profiles/endpoints', parameters('profiles_myghostcdn_name'), 'ghostamgnc')]",
 				"[resourceId('Microsoft.Cdn/profiles', parameters('profiles_myghostcdn_name'))]"
 			],
 			"properties": {
