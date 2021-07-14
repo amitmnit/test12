@@ -43,11 +43,11 @@
 			"type": "String"
 		},
 		"actiongroups_application_insights_smart_detection_externalid": {
-			"defaultValue": "/subscriptions/faa32c98-70a5-407d-b7f0-65a3ff9444e3/resourceGroups/ml/providers/microsoft.insights/actiongroups/application insights smart detection",
+			"defaultValue": "application insights smart detection",
 			"type": "String"
 		},
 		"workspaces_DefaultWorkspace_faa32c98_70a5_407d_b7f0_65a3ff9444e3_WEU_externalid": {
-			"defaultValue": "/subscriptions/faa32c98-70a5-407d-b7f0-65a3ff9444e3/resourceGroups/DefaultResourceGroup-WEU/providers/Microsoft.OperationalInsights/workspaces/DefaultWorkspace-faa32c98-70a5-407d-b7f0-65a3ff9444e3-WEU",
+			"defaultValue": "DefaultWorkspace-faa32c98-70a5-407d-b7f0-65a3ff9444e3-WEU",
 			"type": "String"
 		}
 	},
