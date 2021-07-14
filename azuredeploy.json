@@ -5,13 +5,11 @@
 		"profiles_myghostcdn_name": {
 			"defaultValue": "myghostcdn",
 			"type": "String"
-		},
-		{
+		},		
 		"rgName": {
 			"defaultValue": "GhostNC",
 			"type": "String"
 		},
-		{
 		"rgLocation": {
 			"defaultValue": "westeurope",
 			"type": "String"
