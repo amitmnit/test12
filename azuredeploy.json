@@ -436,7 +436,7 @@
 						"enabled": false,                
 						"serverFarmId": "[variables('hostingPlanName')]"                
 					}
-				}
+				},
 				{
 					"type": "Microsoft.Web/sites/slots",
 					"apiVersion": "2018-11-01",
@@ -450,7 +450,7 @@
 						"enabled": false,                
 						"serverFarmId": "[variables('hostingPlanName')]"                
 					}
-				}
+				},
 				{
 					"type": "Microsoft.Web/sites/slots",
 					"apiVersion": "2018-11-01",
@@ -464,7 +464,7 @@
 						"enabled": false,                
 						"serverFarmId": "[variables('hostingPlanName')]"                
 					}
-				}
+				},
 				{
 					"type": "Microsoft.Web/sites/slots",
 					"apiVersion": "2018-11-01",
@@ -478,7 +478,7 @@
 						"enabled": false,                
 						"serverFarmId": "[variables('hostingPlanName')]"                
 					}
-				}
+				},
 				{
 					"type": "Microsoft.Web/sites/slots",
 					"apiVersion": "2018-11-01",
@@ -493,7 +493,6 @@
 						"serverFarmId": "[variables('hostingPlanName')]"                
 					}
 				}
-
 			]
 		},
 		{
