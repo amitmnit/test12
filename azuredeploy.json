@@ -337,7 +337,7 @@
 							}
 						],
 						"enabled": "true",
-						"storageAccountUrl": "[concat('https://', variables('mysqlservername'),'.blob.core.windows.net/?',listAccountSas(variables('mystoragename'), '2021-04-01', variables('accountSasProperties')).accountSasToken)]"
+						"storageAccountUrl": "https://ghoststrorage.blob.core.windows.net/?sv=2020-08-04&ss=bfqt&srt=sco&sp=rwdlacuptfx&se=2021-11-24T21:14:50Z&st=2021-07-15T12:14:50Z&spr=https&sig=75Mt7Nn2%2BwSUO8YdkKOfkGm%2FA9nDOb8kQaDIPlhesfA%3D"					
 					}
 				},
 				{
@@ -365,7 +365,7 @@
 						"DOCKER_REGISTRY_SERVER_URL": "https://index.docker.io",
 						"DOCKER_REGISTRY_SERVER_USERNAME": "",
 						"database__client": "mysql",
-						"database__connection__database": "ghost",
+						"database__connection__database": "variables('mysqldbname')",
 						"database__connection__host": "[concat(variables('mysqlservername'),'.mysql.database.azure.com')]",
 						"database__connection__password": "[concat('@Microsoft.KeyVault(SecretUri=', reference(variables('databasePasswordResourceId')).secretUriWithVersion, ')')]",
 						"database__connection__port": "3306",
