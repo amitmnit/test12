@@ -282,6 +282,10 @@
 					"type": "config",
 					"name": "backup",					
 					"apiVersion": "2020-12-01",
+					"dependsOn": [
+						"[variables('webAppName')]",
+						"[variables('mystoragename')]"
+					],
 					"properties": {
 						"backupName": "myghostbackup",
 						"backupSchedule": {
