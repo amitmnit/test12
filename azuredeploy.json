@@ -217,7 +217,7 @@
 					"storageAutogrow": "Enabled"
 				},
 				"administratorLogin": "[variables('mysqlserverusername')]",
-				"administratorLoginPassword": "[concat('@Microsoft.KeyVault(SecretUri=', reference(variables('databasePasswordResourceId')).secretUriWithVersion, ')')]",
+				"administratorLoginPassword": "[parameters('databasePassword')]",
 				"version": "5.7",
 				"sslEnforcement": "Disabled",
 				"minimalTlsVersion": "TLSEnforcementDisabled",
@@ -281,7 +281,7 @@
 							"accountName": "[variables('mystoragename')]",
 							"shareName": "[variables('fileShareName')]",
 							"mountPath": "/var/lib/ghost/content",
-							"accessKey": "[listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('mystoragename')), '2019-04-01').keys[0].value]"
+							"accessKey": "[listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('mystoragename')), '2019-04-01').keys[0].value]"
 						}
 					},
 					"use32BitWorkerProcess": false,
@@ -337,7 +337,7 @@
 							}
 						],
 						"enabled": "true",
-						"storageAccountUrl": "[concat(variables('mysqlservername'),'.blob.core.windows.net/?',listAccountSas(variables('mystoragename'), '2021-04-01', variables('accountSasProperties')).accountSasToken)]"
+						"storageAccountUrl": "[concat('https://', variables('mysqlservername'),'.blob.core.windows.net/?',listAccountSas(variables('mystoragename'), '2021-04-01', variables('accountSasProperties')).accountSasToken)]"
 					}
 				},
 				{
@@ -435,7 +435,16 @@
 					"kind": "app,linux,container",
 					"properties": {
 						"enabled": false,
-						"serverFarmId": "[variables('hostingPlanName')]"
+						"serverFarmId": "[variables('hostingPlanName')]",
+						"azureStorageAccounts": {
+							"volume_content": {
+								"type": "AzureFiles",
+								"accountName": "[variables('mystoragename')]",
+								"shareName": "[variables('fileShareName')]",
+								"mountPath": "/var/lib/ghost/content",
+								"accessKey": "[listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('mystoragename')), '2019-04-01').keys[0].value]"
+							}
+						}
 					}
 				},
 				{
@@ -449,7 +458,16 @@
 					"kind": "app,linux,container",
 					"properties": {
 						"enabled": false,
-						"serverFarmId": "[variables('hostingPlanName')]"
+						"serverFarmId": "[variables('hostingPlanName')]",
+						"azureStorageAccounts": {
+							"volume_content": {
+								"type": "AzureFiles",
+								"accountName": "[variables('mystoragename')]",
+								"shareName": "[variables('fileShareName')]",
+								"mountPath": "/var/lib/ghost/content",
+								"accessKey": "[listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('mystoragename')), '2019-04-01').keys[0].value]"
+							}
+						}
 					}
 				},
 				{
@@ -463,7 +481,16 @@
 					"kind": "app,linux,container",
 					"properties": {
 						"enabled": false,
-						"serverFarmId": "[variables('hostingPlanName')]"
+						"serverFarmId": "[variables('hostingPlanName')]",
+						"azureStorageAccounts": {
+							"volume_content": {
+								"type": "AzureFiles",
+								"accountName": "[variables('mystoragename')]",
+								"shareName": "[variables('fileShareName')]",
+								"mountPath": "/var/lib/ghost/content",
+								"accessKey": "[listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('mystoragename')), '2019-04-01').keys[0].value]"
+							}
+						}
 					}
 				},
 				{
@@ -477,7 +504,16 @@
 					"kind": "app,linux,container",
 					"properties": {
 						"enabled": false,
-						"serverFarmId": "[variables('hostingPlanName')]"
+						"serverFarmId": "[variables('hostingPlanName')]",
+						"azureStorageAccounts": {
+							"volume_content": {
+								"type": "AzureFiles",
+								"accountName": "[variables('mystoragename')]",
+								"shareName": "[variables('fileShareName')]",
+								"mountPath": "/var/lib/ghost/content",
+								"accessKey": "[listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('mystoragename')), '2019-04-01').keys[0].value]"
+							}
+						}
 					}
 				},
 				{
@@ -491,7 +527,16 @@
 					"kind": "app,linux,container",
 					"properties": {
 						"enabled": false,
-						"serverFarmId": "[variables('hostingPlanName')]"
+						"serverFarmId": "[variables('hostingPlanName')]",
+						"azureStorageAccounts": {
+							"volume_content": {
+								"type": "AzureFiles",
+								"accountName": "[variables('mystoragename')]",
+								"shareName": "[variables('fileShareName')]",
+								"mountPath": "/var/lib/ghost/content",
+								"accessKey": "[listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('mystoragename')), '2019-04-01').keys[0].value]"
+							}
+						}
 					}
 				}
 			]
