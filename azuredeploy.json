@@ -81,7 +81,7 @@
                 "signedServices": "bf",
                 "signedPermission": "rwdlacup",
                 "signedExpiry": "2022-07-01T00:00:01Z",
-                "signedResourceTypes": "co"
+                "signedResourceTypes": "sco"
         }
 	},
 	"resources": [
