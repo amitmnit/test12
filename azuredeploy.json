@@ -274,15 +274,7 @@
 					"minTlsVersion": "1.2",
 					"ftpsState": "Disabled",
 					"linuxFxVersion": "DOCKER|ghost:latest",
-					"alwaysOn": true,
-					"azureStorageAccounts": {
-						"volume_content": {
-							"type": "AzureFiles",
-							"accountName": "[variables('mystoragename')]",
-							"shareName": "[variables('fileShareName')]",
-							"mountPath": "/var/lib/ghost/content"
-						}
-					},
+					"alwaysOn": true,					
 					"use32BitWorkerProcess": false,
 					"ipSecurityRestrictions": [
 						{
@@ -422,8 +414,77 @@
 							}
 						]
 					}
+				},
+				{
+					"type": "Microsoft.Web/sites/slots",
+					"apiVersion": "2018-11-01",
+					"name": "[concat(variables('webAppName'), '/devopsteam1')]",
+					"location": "[parameters('location')]",
+					"dependsOn": [
+						"[variables('webAppName')]"
+					],
+					"kind": "app,linux,container",
+					"properties": {
+						"enabled": false,
+						"serverFarmId": "[variables('hostingPlanName')]"
+					}
+				},
+				{
+					"type": "Microsoft.Web/sites/slots",
+					"apiVersion": "2018-11-01",
+					"name": "[concat(variables('webAppName'), '/devopsteam2')]",
+					"location": "[parameters('location')]",
+					"dependsOn": [
+						"[variables('webAppName')]"
+					],
+					"kind": "app,linux,container",
+					"properties": {
+						"enabled": false,
+						"serverFarmId": "[variables('hostingPlanName')]"
+					}
+				},
+				{
+					"type": "Microsoft.Web/sites/slots",
+					"apiVersion": "2018-11-01",
+					"name": "[concat(variables('webAppName'), '/devopsteam3')]",
+					"location": "[parameters('location')]",
+					"dependsOn": [
+						"[variables('webAppName')]"
+					],
+					"kind": "app,linux,container",
+					"properties": {
+						"enabled": false,
+						"serverFarmId": "[variables('hostingPlanName')]"
+					}
+				},
+				{
+					"type": "Microsoft.Web/sites/slots",
+					"apiVersion": "2018-11-01",
+					"name": "[concat(variables('webAppName'), '/devopsteam4')]",
+					"location": "[parameters('location')]",
+					"dependsOn": [
+						"[variables('webAppName')]"
+					],
+					"kind": "app,linux,container",
+					"properties": {
+						"enabled": false,
+						"serverFarmId": "[variables('hostingPlanName')]"
+					}
+				},
+				{
+					"type": "Microsoft.Web/sites/slots",
+					"apiVersion": "2018-11-01",
+					"name": "[concat(variables('webAppName'), '/devopsteam5')]",
+					"location": "[parameters('location')]",
+					"dependsOn": [
+						"[variables('webAppName')]"
+					],
+					"kind": "app,linux,container",
+					"properties": {
+						"enabled": false,
+						"serverFarmId": "[variables('hostingPlanName')]"
+					}
 				}
-				
 			]
 		},
 		{
