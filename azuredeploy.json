@@ -226,6 +226,27 @@
 			}
 		},
 		{
+			"type": "Microsoft.DBforMySQL/servers/databases",
+			"apiVersion": "2017-12-01",
+			"name": "[concat(variables('mysqlservername'), '/',variables('mysqlservername'))]",
+			"dependsOn": [
+				"[variables('mysqlservername')]"
+			],
+			"properties": {}
+		},
+		{
+            "type": "Microsoft.DBforMySQL/servers/firewallRules",
+            "apiVersion": "2017-12-01",
+            "name": "[concat(variables('mysqlservername'), '/AllowAllWindowsAzureIps')]",
+            "dependsOn": [
+                "[variables('mysqlservername')]"
+            ],
+            "properties": {
+                "startIpAddress": "0.0.0.0",
+                "endIpAddress": "0.0.0.0"
+            }
+        },
+		{
 			"name": "[variables('webAppName')]",
 			"type": "Microsoft.Web/sites",
 			"apiVersion": "2020-09-01",
