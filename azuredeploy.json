@@ -71,12 +71,21 @@
 		"databasePasswordResourceId": "[resourceId('Microsoft.KeyVault/vaults/secrets', variables('keyVaultName'), 'databasePassword')]",
 		"frontDoorName": "[concat(parameters('applicationPrefix'), '-fd-', uniqueString(resourceGroup().Id))]",
 		"wafPolicyName": "[concat(parameters('applicationPrefix'), 'waf', uniqueString(resourceGroup().Id))]",
-		"mysqlservername": "[concat(parameters('applicationPrefix'), 'sql', uniqueString(resourceGroup().Id))]",
+		"mysqlservername": "[concat(parameters('applicationPrefix'), '-sql-', uniqueString(resourceGroup().Id))]",
 		"mysqlserverusername": "[concat(parameters('applicationPrefix'), 'user')]",
 		"mysqldbname": "[concat(parameters('applicationPrefix'), 'db')]",
-		"mystoragename": "[concat(parameters('applicationPrefix'), 'storage', uniqueString(resourceGroup().Id))]",
+		"mystoragename": "[concat(parameters('applicationPrefix'), 'str', uniqueString(resourceGroup().Id))]",
 		"containerName": "[concat(parameters('applicationPrefix'), 'backupcontainer')]",
-		"fileShareName": "[concat(parameters('applicationPrefix'), 'fileshare')]"
+		"fileShareName": "[concat(parameters('applicationPrefix'), 'fileshare')]",
+		"accountSasProperties": {
+            "type": "object",
+            "defaultValue": {
+                "signedServices": "bf",
+                "signedPermission": "rwdlacup",
+                "signedExpiry": "2022-7-01T00:00:01Z",
+                "signedResourceTypes": "sco"
+            }
+        }
 	},
 	"resources": [
 		{
@@ -190,7 +199,7 @@
 		{
 			"type": "Microsoft.DBforMySQL/servers",
 			"apiVersion": "2017-12-01",
-			"name": "variables('mysqlservername')",
+			"name": "[variables('mysqlservername')]",
 			"location": "[parameters('location')]",
 			"dependsOn": [
 				"[variables('logAnalyticsWorkspaceName')]",
@@ -248,6 +257,14 @@
 					"ftpsState": "Disabled",
 					"linuxFxVersion": "DOCKER|ghost:latest",
 					"alwaysOn": true,
+					"azureStorageAccounts": {
+						"volume_content": {
+							"type": "AzureFiles",
+							"accountName": "[variables('mystoragename')]",
+							"shareName": "[variables('fileShareName')]",
+							"mountPath": "/var/lib/ghost/content"
+						}
+					},
 					"use32BitWorkerProcess": false,
 					"ipSecurityRestrictions": [
 						{
@@ -301,7 +318,7 @@
 							}
 						],
 						"enabled": "true",
-						"storageAccountUrl": "[reference(resourceId('Microsoft.Storage/storageAccounts', variables('mystoragename'))).primaryEndpoints.blob]"
+						"storageAccountUrl": "[listAccountSas(variables('mystoragename'), '2018-07-01', variables('accountSasProperties')).accountSasToken]"
 					}
 				},
 				{
@@ -387,7 +404,22 @@
 							}
 						]
 					}
+				},
+				{
+					"type": "Microsoft.Web/sites/slots",
+					"apiVersion": "2018-11-01",
+					"name": "[concat(variables('webAppName'), '/devopsteam1')]",
+					"location": "[parameters('location')]",
+					"dependsOn": [
+						"[variables('webAppName')]"
+					],
+					"kind": "app,linux,container",
+					"properties": {
+						"enabled": false,                
+						"serverFarmId": "[variables('hostingPlanName')]"                
+					}
 				}
+
 			]
 		},
 		{
