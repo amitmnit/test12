@@ -436,13 +436,15 @@
 					"properties": {
 						"enabled": false,
 						"serverFarmId": "[variables('hostingPlanName')]",
-						"azureStorageAccounts": {
-							"volume_content": {
-								"type": "AzureFiles",
-								"accountName": "[variables('mystoragename')]",
-								"shareName": "[variables('fileShareName')]",
-								"mountPath": "/var/lib/ghost/content",
-								"accessKey": "[listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('mystoragename')), '2019-04-01').keys[0].value]"
+						"siteConfig": {
+							"azureStorageAccounts": {
+								"volume_content": {
+									"type": "AzureFiles",
+									"accountName": "[variables('mystoragename')]",
+									"shareName": "[variables('fileShareName')]",
+									"mountPath": "/var/lib/ghost/content",
+									"accessKey": "[listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('mystoragename')), '2019-04-01').keys[0].value]"
+								}
 							}
 						}
 					}
@@ -459,13 +461,15 @@
 					"properties": {
 						"enabled": false,
 						"serverFarmId": "[variables('hostingPlanName')]",
-						"azureStorageAccounts": {
-							"volume_content": {
-								"type": "AzureFiles",
-								"accountName": "[variables('mystoragename')]",
-								"shareName": "[variables('fileShareName')]",
-								"mountPath": "/var/lib/ghost/content",
-								"accessKey": "[listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('mystoragename')), '2019-04-01').keys[0].value]"
+						"siteConfig": {
+							"azureStorageAccounts": {
+								"volume_content": {
+									"type": "AzureFiles",
+									"accountName": "[variables('mystoragename')]",
+									"shareName": "[variables('fileShareName')]",
+									"mountPath": "/var/lib/ghost/content",
+									"accessKey": "[listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('mystoragename')), '2019-04-01').keys[0].value]"
+								}
 							}
 						}
 					}
@@ -482,13 +486,15 @@
 					"properties": {
 						"enabled": false,
 						"serverFarmId": "[variables('hostingPlanName')]",
-						"azureStorageAccounts": {
-							"volume_content": {
-								"type": "AzureFiles",
-								"accountName": "[variables('mystoragename')]",
-								"shareName": "[variables('fileShareName')]",
-								"mountPath": "/var/lib/ghost/content",
-								"accessKey": "[listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('mystoragename')), '2019-04-01').keys[0].value]"
+						"siteConfig": {
+							"azureStorageAccounts": {
+								"volume_content": {
+									"type": "AzureFiles",
+									"accountName": "[variables('mystoragename')]",
+									"shareName": "[variables('fileShareName')]",
+									"mountPath": "/var/lib/ghost/content",
+									"accessKey": "[listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('mystoragename')), '2019-04-01').keys[0].value]"
+								}
 							}
 						}
 					}
@@ -505,13 +511,15 @@
 					"properties": {
 						"enabled": false,
 						"serverFarmId": "[variables('hostingPlanName')]",
-						"azureStorageAccounts": {
-							"volume_content": {
-								"type": "AzureFiles",
-								"accountName": "[variables('mystoragename')]",
-								"shareName": "[variables('fileShareName')]",
-								"mountPath": "/var/lib/ghost/content",
-								"accessKey": "[listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('mystoragename')), '2019-04-01').keys[0].value]"
+						"siteConfig": {
+							"azureStorageAccounts": {
+								"volume_content": {
+									"type": "AzureFiles",
+									"accountName": "[variables('mystoragename')]",
+									"shareName": "[variables('fileShareName')]",
+									"mountPath": "/var/lib/ghost/content",
+									"accessKey": "[listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('mystoragename')), '2019-04-01').keys[0].value]"
+								}
 							}
 						}
 					}
@@ -528,13 +536,15 @@
 					"properties": {
 						"enabled": false,
 						"serverFarmId": "[variables('hostingPlanName')]",
-						"azureStorageAccounts": {
-							"volume_content": {
-								"type": "AzureFiles",
-								"accountName": "[variables('mystoragename')]",
-								"shareName": "[variables('fileShareName')]",
-								"mountPath": "/var/lib/ghost/content",
-								"accessKey": "[listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('mystoragename')), '2019-04-01').keys[0].value]"
+						"siteConfig": {
+							"azureStorageAccounts": {
+								"volume_content": {
+									"type": "AzureFiles",
+									"accountName": "[variables('mystoragename')]",
+									"shareName": "[variables('fileShareName')]",
+									"mountPath": "/var/lib/ghost/content",
+									"accessKey": "[listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('mystoragename')), '2019-04-01').keys[0].value]"
+								}
 							}
 						}
 					}
