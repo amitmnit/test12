@@ -216,7 +216,7 @@
 					"geoRedundantBackup": "Disabled",
 					"storageAutogrow": "Enabled"
 				},
-				"administratorLogin": "variables('mysqlserverusername')",
+				"administratorLogin": "[variables('mysqlserverusername')]",
 				"administratorLoginPassword": "[concat('@Microsoft.KeyVault(SecretUri=', reference(variables('databasePasswordResourceId')).secretUriWithVersion, ')')]",
 				"version": "5.7",
 				"sslEnforcement": "Disabled",
@@ -274,7 +274,16 @@
 					"minTlsVersion": "1.2",
 					"ftpsState": "Disabled",
 					"linuxFxVersion": "DOCKER|ghost:latest",
-					"alwaysOn": true,					
+					"alwaysOn": true,
+					"azureStorageAccounts": {
+						"volume_content": {
+							"type": "AzureFiles",
+							"accountName": "[variables('mystoragename')]",
+							"shareName": "[variables('fileShareName')]",
+							"mountPath": "/var/lib/ghost/content",
+							"accessKey": "[listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('mystoragename')), '2019-04-01').keys[0].value]"
+						}
+					},
 					"use32BitWorkerProcess": false,
 					"ipSecurityRestrictions": [
 						{
@@ -328,7 +337,7 @@
 							}
 						],
 						"enabled": "true",
-						"storageAccountUrl": "[listAccountSas(variables('mystoragename'), '2021-04-01', variables('accountSasProperties')).accountSasToken]"
+						"storageAccountUrl": "[concat(variables('mysqlservername'),'.blob.core.windows.net/?',listAccountSas(variables('mystoragename'), '2021-04-01', variables('accountSasProperties')).accountSasToken)]"
 					}
 				},
 				{
