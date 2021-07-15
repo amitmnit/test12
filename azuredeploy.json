@@ -78,11 +78,11 @@
 		"containerName": "[concat(parameters('applicationPrefix'), 'backupcontainer')]",
 		"fileShareName": "[concat(parameters('applicationPrefix'), 'fileshare')]",
 		"accountSasProperties": {
-                "signedServices": "bf",
-                "signedPermission": "rwdlacup",
-                "signedExpiry": "2022-07-01T00:00:01Z",
-                "signedResourceTypes": "sco"
-        }
+			"signedServices": "bf",
+			"signedPermission": "rwdlacup",
+			"signedExpiry": "2022-07-01T00:00:01Z",
+			"signedResourceTypes": "sco"
+		}
 	},
 	"resources": [
 		{
@@ -235,17 +235,17 @@
 			"properties": {}
 		},
 		{
-            "type": "Microsoft.DBforMySQL/servers/firewallRules",
-            "apiVersion": "2017-12-01",
-            "name": "[concat(variables('mysqlservername'), '/AllowAllWindowsAzureIps')]",
-            "dependsOn": [
-                "[variables('mysqlservername')]"
-            ],
-            "properties": {
-                "startIpAddress": "0.0.0.0",
-                "endIpAddress": "0.0.0.0"
-            }
-        },
+			"type": "Microsoft.DBforMySQL/servers/firewallRules",
+			"apiVersion": "2017-12-01",
+			"name": "[concat(variables('mysqlservername'), '/AllowAllWindowsAzureIps')]",
+			"dependsOn": [
+				"[variables('mysqlservername')]"
+			],
+			"properties": {
+				"startIpAddress": "0.0.0.0",
+				"endIpAddress": "0.0.0.0"
+			}
+		},
 		{
 			"name": "[variables('webAppName')]",
 			"type": "Microsoft.Web/sites",
@@ -299,7 +299,7 @@
 			"resources": [
 				{
 					"type": "config",
-					"name": "connectionstrings",					
+					"name": "connectionstrings",
 					"apiVersion": "2020-12-01",
 					"location": "[parameters('location')]",
 					"dependsOn": [
@@ -315,7 +315,7 @@
 				},
 				{
 					"type": "config",
-					"name": "backup",					
+					"name": "backup",
 					"apiVersion": "2020-12-01",
 					"dependsOn": [
 						"[variables('webAppName')]",
@@ -433,8 +433,8 @@
 					],
 					"kind": "app,linux,container",
 					"properties": {
-						"enabled": false,                
-						"serverFarmId": "[variables('hostingPlanName')]"                
+						"enabled": false,
+						"serverFarmId": "[variables('hostingPlanName')]"
 					}
 				},
 				{
@@ -447,8 +447,8 @@
 					],
 					"kind": "app,linux,container",
 					"properties": {
-						"enabled": false,                
-						"serverFarmId": "[variables('hostingPlanName')]"                
+						"enabled": false,
+						"serverFarmId": "[variables('hostingPlanName')]"
 					}
 				},
 				{
@@ -461,8 +461,8 @@
 					],
 					"kind": "app,linux,container",
 					"properties": {
-						"enabled": false,                
-						"serverFarmId": "[variables('hostingPlanName')]"                
+						"enabled": false,
+						"serverFarmId": "[variables('hostingPlanName')]"
 					}
 				},
 				{
@@ -475,8 +475,8 @@
 					],
 					"kind": "app,linux,container",
 					"properties": {
-						"enabled": false,                
-						"serverFarmId": "[variables('hostingPlanName')]"                
+						"enabled": false,
+						"serverFarmId": "[variables('hostingPlanName')]"
 					}
 				},
 				{
@@ -489,8 +489,8 @@
 					],
 					"kind": "app,linux,container",
 					"properties": {
-						"enabled": false,                
-						"serverFarmId": "[variables('hostingPlanName')]"                
+						"enabled": false,
+						"serverFarmId": "[variables('hostingPlanName')]"
 					}
 				}
 			]
