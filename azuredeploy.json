@@ -437,6 +437,62 @@
 						"serverFarmId": "[variables('hostingPlanName')]"                
 					}
 				}
+				{
+					"type": "Microsoft.Web/sites/slots",
+					"apiVersion": "2018-11-01",
+					"name": "[concat(variables('webAppName'), '/devopsteam2')]",
+					"location": "[parameters('location')]",
+					"dependsOn": [
+						"[variables('webAppName')]"
+					],
+					"kind": "app,linux,container",
+					"properties": {
+						"enabled": false,                
+						"serverFarmId": "[variables('hostingPlanName')]"                
+					}
+				}
+				{
+					"type": "Microsoft.Web/sites/slots",
+					"apiVersion": "2018-11-01",
+					"name": "[concat(variables('webAppName'), '/devopsteam3')]",
+					"location": "[parameters('location')]",
+					"dependsOn": [
+						"[variables('webAppName')]"
+					],
+					"kind": "app,linux,container",
+					"properties": {
+						"enabled": false,                
+						"serverFarmId": "[variables('hostingPlanName')]"                
+					}
+				}
+				{
+					"type": "Microsoft.Web/sites/slots",
+					"apiVersion": "2018-11-01",
+					"name": "[concat(variables('webAppName'), '/devopsteam4')]",
+					"location": "[parameters('location')]",
+					"dependsOn": [
+						"[variables('webAppName')]"
+					],
+					"kind": "app,linux,container",
+					"properties": {
+						"enabled": false,                
+						"serverFarmId": "[variables('hostingPlanName')]"                
+					}
+				}
+				{
+					"type": "Microsoft.Web/sites/slots",
+					"apiVersion": "2018-11-01",
+					"name": "[concat(variables('webAppName'), '/devopsteam5')]",
+					"location": "[parameters('location')]",
+					"dependsOn": [
+						"[variables('webAppName')]"
+					],
+					"kind": "app,linux,container",
+					"properties": {
+						"enabled": false,                
+						"serverFarmId": "[variables('hostingPlanName')]"                
+					}
+				}
 
 			]
 		},
