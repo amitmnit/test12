@@ -78,13 +78,10 @@
 		"containerName": "[concat(parameters('applicationPrefix'), 'backupcontainer')]",
 		"fileShareName": "[concat(parameters('applicationPrefix'), 'fileshare')]",
 		"accountSasProperties": {
-            "type": "object",
-            "defaultValue": {
                 "signedServices": "bf",
                 "signedPermission": "rwdlacup",
                 "signedExpiry": "2022-07-01T00:00:01Z",
-                "signedResourceTypes": "sco"
-            }
+                "signedResourceTypes": "co"
         }
 	},
 	"resources": [
