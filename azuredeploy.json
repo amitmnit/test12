@@ -273,7 +273,7 @@
 					],
 					"properties": {
 						"ghostdbstring": {
-							"value": "[concat('Database=',variables('mysqldbname'),'; Data Source=',variables('mysqlservername'),'.mysql.database.azure.com; User Id=',concat(variables('mysqlserverusername'),'@',variables('mysqlservername')),'; Password=',concat('@Microsoft.KeyVault(SecretUri=', reference(variables('databasePasswordResourceId')).secretUriWithVersion, ')')]",
+							"value": "[concat('Database=',variables('mysqldbname'),'; Data Source=',variables('mysqlservername'),'.mysql.database.azure.com; User Id=',concat(variables('mysqlserverusername'),'@',variables('mysqlservername')),'; Password=',concat('@Microsoft.KeyVault(SecretUri=', reference(variables('databasePasswordResourceId')).secretUriWithVersion, ')'))]",
 							"type": "MySQL"
 						}
 					}
