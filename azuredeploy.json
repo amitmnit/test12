@@ -61,10 +61,10 @@
 		"containerName": "[concat(parameters('applicationPrefix'), 'backupcontainer')]",
 		"fileShareName": "[concat(parameters('applicationPrefix'), 'fileshare')]",
 		"accountSasProperties": {
-			"signedServices": "bf",
-			"signedPermission": "rwdlacup",
-			"signedExpiry": "2022-07-01T00:00:01Z",
-			"signedResourceTypes": "sco"
+			"canonicalizedResource": "[concat('/blob/', variables('mystoragename'), '/', variables('containerName'))]",
+			"signedResource": "acdlpruw",
+			"signedPermission": "r",
+			"signedExpiry": "2022-01-01T00:00:00Z"
 		}
 	},
 	"resources": [
@@ -315,7 +315,7 @@
 						},						
 						"enabled": "true",
 						"storageAccountUrl": 
-						"[concat('https://', variables('mysqlservername'),'.blob.core.windows.net/?',variables('containerName'),listAccountSas(variables('mystoragename'), '2021-04-01', variables('accountSasProperties')).accountSasToken)]"	
+						"[concat('https://', variables('mysqlservername'),'.blob.core.windows.net/?',variables('containerName'),listServiceSas(variables('mysqlservername'), '2018-02-01', variables('accountSasProperties')).serviceSasToken)]"	
 					}
 				},
 				{
