@@ -9,26 +9,7 @@
 				"name": "Application name prefix"
 			},
 			"defaultValue": "ghost"
-		},
-		"hostingPlanSku": {
-			"type": "string",
-			"metadata": {
-				"description": "Specify the pricing tier for the App Service Plan.",
-				"name": "App Service Plan SKU"
-			},
-			"allowedValues": [
-				"B1",
-				"B2",
-				"B3",
-				"S1",
-				"S2",
-				"S3",
-				"P1v2",
-				"P2v2",
-				"P3v2"
-			],
-			"defaultValue": "B1"
-		},
+		},		
 		"logAnalyticsWorkspaceSku": {
 			"type": "string",
 			"metadata": {
@@ -65,6 +46,7 @@
 	"variables": {
 		"webAppName": "[concat(parameters('applicationPrefix'), '-web-', uniqueString(resourceGroup().Id))]",
 		"hostingPlanName": "[concat(parameters('applicationPrefix'), '-asp-', uniqueString(resourceGroup().Id))]",
+		"ConsumptionhostingPlan": "[concat(parameters('applicationPrefix'), '-casp-', uniqueString(resourceGroup().Id))]",
 		"logAnalyticsWorkspaceName": "[concat(parameters('applicationPrefix'), '-la-', uniqueString(resourceGroup().Id))]",
 		"applicationInsightsName": "[concat(parameters('applicationPrefix'), '-ai-', uniqueString(resourceGroup().Id))]",
 		"keyVaultName": "[concat(parameters('applicationPrefix'), '-kv-', uniqueString(resourceGroup().Id))]",
@@ -313,33 +295,7 @@
 							"type": "MySQL"
 						}
 					}
-				},
-				{
-					"type": "config",
-					"name": "backup",
-					"apiVersion": "2020-12-01",
-					"dependsOn": [
-						"[variables('webAppName')]",
-						"[variables('mystoragename')]"
-					],
-					"properties": {
-						"backupName": "myghostbackup",
-						"backupSchedule": {
-							"frequencyInterval": "1",
-							"frequencyUnit": "Day",
-							"keepAtLeastOneBackup": "true",
-							"retentionPeriodInDays": "30"
-						},
-						"databases": [
-							{
-								"connectionStringName": "ghostdbstring",
-								"databaseType": "MySQL"
-							}
-						],
-						"enabled": "true",
-						"storageAccountUrl": "https://ghoststrorage.blob.core.windows.net/?sv=2020-08-04&ss=bfqt&srt=sco&sp=rwdlacuptfx&se=2021-11-24T21:14:50Z&st=2021-07-15T12:14:50Z&spr=https&sig=75Mt7Nn2%2BwSUO8YdkKOfkGm%2FA9nDOb8kQaDIPlhesfA%3D"					
-					}
-				},
+				},				
 				{
 					"type": "config",
 					"apiVersion": "2020-09-01",
@@ -354,9 +310,7 @@
 						"APPLICATIONINSIGHTS_CONNECTION_STRING": "[reference(resourceId('microsoft.insights/components/', variables('applicationInsightsName')), '2020-02-02-preview').ConnectionString]",
 						"ApplicationInsightsAgent_EXTENSION_VERSION": "~2",
 						"XDT_MicrosoftApplicationInsights_Mode": "default",
-						"NODE_ENV": "production",
-						"GHOST_CONTENT": "/var/lib/ghost/content_files/",
-						"paths__contentPath": "/var/lib/ghost/content_files/",
+						"NODE_ENV": "production",						
 						"privacy_useUpdateCheck": "false",
 						"url": "[concat('https://', variables('frontDoorName'), '.azurefd.net')]",
 						"WEBSITES_ENABLE_APP_SERVICE_STORAGE": "true",
@@ -675,6 +629,89 @@
 				}
 			]
 		},
+		{
+		   "type":"Microsoft.Web/serverfarms",
+		   "apiVersion":"2016-09-01",
+		   "name":"[variables('ConsumptionhostingPlan')]",
+		   "location":"[resourceGroup().location]",
+		   "properties":{
+			  "name":"[variables('ConsumptionhostingPlan')]",
+			  "computeMode":"Dynamic"
+		   },
+		   "sku":{
+			  "name":"Y1",
+			  "tier":"Dynamic",
+			  "size":"Y1",
+			  "family":"Y",
+			  "capacity":0
+		   }
+		}		
+		{
+			"apiVersion": "2016-03-01",
+			"type": "Microsoft.Web/sites",
+			"name": "[variables('functionAppName')]",
+			"location": "[resourceGroup().location]",
+			"kind": "functionapp",
+			"dependsOn": [
+				"[variables('mystoragename')]",
+				"[variables('applicationInsightsName')]",
+				"[variables('ConsumptionhostingPlan')]"
+			],
+			"properties": {
+				"enabled": true,
+				"serverFarmId": "[variables('ConsumptionhostingPlan')]",
+				"siteConfig": {
+					"numberOfWorkers": 1,
+                    "alwaysOn": true,
+					"appSettings": [
+						{
+							"name": "AzureWebJobsStorage",
+							"value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('mystoragename'), ';AccountKey=', listKeys(variables('mystoragename'),'2019-06-01').keys[0].value)]"
+						},
+						{
+							"name": "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING",
+							"value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('mystoragename'), ';AccountKey=', listKeys(variables('mystoragename'),'2019-06-01').keys[0].value)]"
+						},
+						{
+							"name": "FUNCTIONS_WORKER_RUNTIME",
+							"value": "dotnet"
+						},						
+						{
+							"name": "FUNCTIONS_EXTENSION_VERSION",
+							"value": "~3"
+						},
+						{
+							"name": "APPINSIGHTS_INSTRUMENTATIONKEY",
+							"value": 				"[reference(resourceId('microsoft.insights/components/', variables('applicationInsightsName')), '2020-02-02-preview').InstrumentationKey]"
+						},
+						{
+							"name": "APPLICATIONINSIGHTS_CONNECTION_STRING",
+							"value": 						"[reference(resourceId('microsoft.insights/components/', variables('applicationInsightsName')), '2020-02-02-preview').ConnectionString]"
+						},
+						{
+							"name": "ApplicationInsightsAgent_EXTENSION_VERSION",
+							"value": "~2"
+						},						
+						{
+							"name": "DBName",
+							"value": "variables('mysqldbname')"
+						},
+						{
+							"name": "DBserver",
+							"value": "[concat(variables('mysqlservername'),'.mysql.database.azure.com')]"
+						},
+						{
+							"name": "DBPassword",
+							"value": "[concat('@Microsoft.KeyVault(SecretUri=', reference(variables('databasePasswordResourceId')).secretUriWithVersion, ')')]"
+						},
+						{
+							"name": "DBUser",
+							"value": "[concat(variables('mysqlserverusername'),'@',variables('mysqlservername'))]"							
+						}
+					]
+				}
+			}
+		}
 		{
 			"type": "Microsoft.Network/frontDoors",
 			"apiVersion": "2020-05-01",
