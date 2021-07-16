@@ -694,7 +694,7 @@
 						},
 						{
 							"name": "DBName",
-							"value": "variables('mysqldbname')"
+							"value": "[variables('mysqldbname')]"
 						},
 						{
 							"name": "DBserver",
