@@ -45,6 +45,7 @@
 	},
 	"variables": {
 		"webAppName": "[concat(parameters('applicationPrefix'), '-web-', uniqueString(resourceGroup().Id))]",
+		"functionAppName": "[concat(parameters('applicationPrefix'), '-func-', uniqueString(resourceGroup().Id))]",
 		"hostingPlanName": "[concat(parameters('applicationPrefix'), '-asp-', uniqueString(resourceGroup().Id))]",
 		"ConsumptionhostingPlan": "[concat(parameters('applicationPrefix'), '-casp-', uniqueString(resourceGroup().Id))]",
 		"logAnalyticsWorkspaceName": "[concat(parameters('applicationPrefix'), '-la-', uniqueString(resourceGroup().Id))]",
