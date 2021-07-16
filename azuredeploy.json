@@ -9,7 +9,7 @@
 				"name": "Application name prefix"
 			},
 			"defaultValue": "ghost"
-		},		
+		},
 		"logAnalyticsWorkspaceSku": {
 			"type": "string",
 			"metadata": {
@@ -295,7 +295,7 @@
 							"type": "MySQL"
 						}
 					}
-				},				
+				},
 				{
 					"type": "config",
 					"apiVersion": "2020-09-01",
@@ -310,7 +310,7 @@
 						"APPLICATIONINSIGHTS_CONNECTION_STRING": "[reference(resourceId('microsoft.insights/components/', variables('applicationInsightsName')), '2020-02-02-preview').ConnectionString]",
 						"ApplicationInsightsAgent_EXTENSION_VERSION": "~2",
 						"XDT_MicrosoftApplicationInsights_Mode": "default",
-						"NODE_ENV": "production",						
+						"NODE_ENV": "production",
 						"privacy_useUpdateCheck": "false",
 						"url": "[concat('https://', variables('frontDoorName'), '.azurefd.net')]",
 						"WEBSITES_ENABLE_APP_SERVICE_STORAGE": "true",
@@ -630,22 +630,22 @@
 			]
 		},
 		{
-		   "type":"Microsoft.Web/serverfarms",
-		   "apiVersion":"2016-09-01",
-		   "name":"[variables('ConsumptionhostingPlan')]",
-		   "location":"[resourceGroup().location]",
-		   "properties":{
-			  "name":"[variables('ConsumptionhostingPlan')]",
-			  "computeMode":"Dynamic"
-		   },
-		   "sku":{
-			  "name":"Y1",
-			  "tier":"Dynamic",
-			  "size":"Y1",
-			  "family":"Y",
-			  "capacity":0
-		   }
-		}		
+			"type": "Microsoft.Web/serverfarms",
+			"apiVersion": "2016-09-01",
+			"name": "[variables('ConsumptionhostingPlan')]",
+			"location": "[resourceGroup().location]",
+			"properties": {
+				"name": "[variables('ConsumptionhostingPlan')]",
+				"computeMode": "Dynamic"
+			},
+			"sku": {
+				"name": "Y1",
+				"tier": "Dynamic",
+				"size": "Y1",
+				"family": "Y",
+				"capacity": 0
+			}
+		},
 		{
 			"apiVersion": "2016-03-01",
 			"type": "Microsoft.Web/sites",
@@ -662,7 +662,7 @@
 				"serverFarmId": "[variables('ConsumptionhostingPlan')]",
 				"siteConfig": {
 					"numberOfWorkers": 1,
-                    "alwaysOn": true,
+					"alwaysOn": true,
 					"appSettings": [
 						{
 							"name": "AzureWebJobsStorage",
@@ -675,23 +675,23 @@
 						{
 							"name": "FUNCTIONS_WORKER_RUNTIME",
 							"value": "dotnet"
-						},						
+						},
 						{
 							"name": "FUNCTIONS_EXTENSION_VERSION",
 							"value": "~3"
 						},
 						{
 							"name": "APPINSIGHTS_INSTRUMENTATIONKEY",
-							"value": 				"[reference(resourceId('microsoft.insights/components/', variables('applicationInsightsName')), '2020-02-02-preview').InstrumentationKey]"
+							"value": "[reference(resourceId('microsoft.insights/components/', variables('applicationInsightsName')), '2020-02-02-preview').InstrumentationKey]"
 						},
 						{
 							"name": "APPLICATIONINSIGHTS_CONNECTION_STRING",
-							"value": 						"[reference(resourceId('microsoft.insights/components/', variables('applicationInsightsName')), '2020-02-02-preview').ConnectionString]"
+							"value": "[reference(resourceId('microsoft.insights/components/', variables('applicationInsightsName')), '2020-02-02-preview').ConnectionString]"
 						},
 						{
 							"name": "ApplicationInsightsAgent_EXTENSION_VERSION",
 							"value": "~2"
-						},						
+						},
 						{
 							"name": "DBName",
 							"value": "variables('mysqldbname')"
@@ -706,12 +706,12 @@
 						},
 						{
 							"name": "DBUser",
-							"value": "[concat(variables('mysqlserverusername'),'@',variables('mysqlservername'))]"							
+							"value": "[concat(variables('mysqlserverusername'),'@',variables('mysqlservername'))]"
 						}
 					]
 				}
 			}
-		}
+		},
 		{
 			"type": "Microsoft.Network/frontDoors",
 			"apiVersion": "2020-05-01",
