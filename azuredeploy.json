@@ -314,7 +314,8 @@
 							"retentionPeriodInDays": "30"
 						},						
 						"enabled": "true",
-						"storageAccountUrl": "https://ghoststrorage.blob.core.windows.net/ghostbackup?sp=racwdl&st=2021-07-16T10:32:44Z&se=2021-07-16T18:32:44Z&spr=https&sv=2020-08-04&sr=c&sig=sTbaDlKXOFFDMMBHYbVyWbDBAjBskYVPH1sSn5q2U5w%3D"		
+						"storageAccountUrl": 
+						"[concat('https://', variables('mysqlservername'),'.blob.core.windows.net/?',variables('containerName'),listAccountSas(variables('mystoragename'), '2021-04-01', variables('accountSasProperties')).accountSasToken)]"	
 					}
 				},
 				{
