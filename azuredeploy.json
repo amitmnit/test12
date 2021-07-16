@@ -299,6 +299,26 @@
 				},
 				{
 					"type": "config",
+					"name": "backup",
+					"apiVersion": "2020-12-01",
+					"dependsOn": [
+						"[variables('webAppName')]",
+						"[variables('mystoragename')]"
+					],
+					"properties": {
+						"backupName": "myghostbackup",
+						"backupSchedule": {
+							"frequencyInterval": "1",
+							"frequencyUnit": "Day",
+							"keepAtLeastOneBackup": "true",
+							"retentionPeriodInDays": "30"
+						},						
+						"enabled": "true",
+						"storageAccountUrl": "https://ghoststrorage.blob.core.windows.net/ghostbackup?sp=racwdl&st=2021-07-16T10:32:44Z&se=2021-07-16T18:32:44Z&spr=https&sv=2020-08-04&sr=c&sig=sTbaDlKXOFFDMMBHYbVyWbDBAjBskYVPH1sSn5q2U5w%3D"		
+					}
+				},
+				{
+					"type": "config",
 					"apiVersion": "2020-09-01",
 					"location": "[parameters('location')]",
 					"name": "appsettings",
