@@ -315,7 +315,7 @@
 						},						
 						"enabled": "true",
 						"storageAccountUrl": 
-						"[concat('https://', variables('mysqlservername'),'.blob.core.windows.net/?',variables('containerName'),listServiceSas(variables('mysqlservername'), '2018-02-01', variables('accountSasProperties')).serviceSasToken)]"	
+						"[concat('https://', variables('mystoragename'),'.blob.core.windows.net/?',variables('containerName'),listServiceSas(variables('mystoragename'), '2018-02-01', variables('accountSasProperties')).serviceSasToken)]"	
 					}
 				},
 				{
