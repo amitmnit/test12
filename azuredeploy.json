@@ -661,9 +661,7 @@
 			"properties": {
 				"enabled": true,
 				"serverFarmId": "[variables('ConsumptionhostingPlan')]",
-				"siteConfig": {
-					"numberOfWorkers": 1,
-					"alwaysOn": true,
+				"siteConfig": {				
 					"appSettings": [
 						{
 							"name": "AzureWebJobsStorage",
