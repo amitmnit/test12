@@ -62,8 +62,8 @@
 		"fileShareName": "[concat(parameters('applicationPrefix'), 'fileshare')]",
 		"accountSasProperties": {
 			"canonicalizedResource": "[concat('/blob/', variables('mystoragename'), '/', variables('containerName'))]",
-			"signedResource": "acdlpruw",
-			"signedPermission": "r",
+			"signedResource": "c",
+			"signedPermission": "rwdlacup",
 			"signedExpiry": "2022-01-01T00:00:00Z"
 		}
 	},
